@@ -5,7 +5,6 @@ the sequence of keystrokes to a file.
 
 author: andreasl"""
 import argparse
-
 import enum
 import pathlib
 import pickle
