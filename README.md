@@ -63,3 +63,8 @@ Happy coding!
 
 ## License
 See LICENSE file.
+
+
+## TODO
+- consider making `omnimacro` a service and keep key sequences in memory to avoid loading times when
+  replaying
