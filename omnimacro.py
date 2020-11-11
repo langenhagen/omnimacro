@@ -69,7 +69,7 @@ class State:
         return State.is_cmd_pressed and State.is_p_pressed
 
 
-RECORDED_KEY_EVENTS: List[Tuple[int, KeyEventType]] = []
+recorded_events: List[Tuple[int, KeyEventType]] = []
 
 
 def on_press(key: Key):
@@ -77,7 +77,7 @@ def on_press(key: Key):
     if State.update(key, KeyEventType.PRESS):
         return False
     if key != Key.cmd:
-        RECORDED_KEY_EVENTS.append((key, KeyEventType.PRESS))
+        recorded_events.append((key, KeyEventType.PRESS))
     return True
 
 
@@ -85,7 +85,7 @@ def on_release(key: Key):
     """Add key-release events to a list."""
     State.update(key, KeyEventType.RELEASE)
     if key != Key.cmd:
-        RECORDED_KEY_EVENTS.append((key, KeyEventType.RELEASE))
+        recorded_events.append((key, KeyEventType.RELEASE))
 
 
 def log_key_events(path: pathlib.Path):
@@ -93,7 +93,7 @@ def log_key_events(path: pathlib.Path):
     with KeyboardListener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
     with open(path, "wb") as file:
-        pickle.dump(RECORDED_KEY_EVENTS, file)
+        pickle.dump(recorded_events, file)
 
 
 def play_key_events(path: pathlib.Path):
