@@ -9,6 +9,7 @@ import argparse
 import enum
 import pathlib
 import pickle
+import time
 from typing import List, Tuple
 
 import pynput
@@ -106,6 +107,7 @@ def play_key_events(path: pathlib.Path):
             controller.press(key)
         else:
             controller.release(key)
+        time.sleep(0.01)
 
 
 def main():
