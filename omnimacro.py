@@ -72,7 +72,7 @@ class State:
 recorded_events: List[Tuple[int, KeyEventType]] = []
 
 
-def on_press(key: Key):
+def on_press(key: Key) -> bool:
     """Add key strokes to a list."""
     if State.update(key, KeyEventType.PRESS):
         return False
@@ -88,7 +88,7 @@ def on_release(key: Key):
         recorded_events.append((key, KeyEventType.RELEASE))
 
 
-def log_key_events(path: pathlib.Path):
+def log_events(path: pathlib.Path):
     """Log keyboard events to a file."""
     with KeyboardListener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
@@ -96,7 +96,7 @@ def log_key_events(path: pathlib.Path):
         pickle.dump(recorded_events, file)
 
 
-def play_key_events(path: pathlib.Path):
+def play_events(path: pathlib.Path):
     """Play keyboard events from a pickle file."""
     with open(path, "rb") as file:
         key_events = pickle.load(file)
@@ -114,9 +114,9 @@ def main():
     """omnimacro's main entry point."""
     namespace = parse_cmd_args()
     if namespace.play:
-        play_key_events(namespace.path)
+        play_events(namespace.path)
     else:
-        log_key_events(namespace.path)
+        log_events(namespace.path)
 
 
 if __name__ == "__main__":
