@@ -21,31 +21,28 @@ run.
 
 
 ## Usage
-You can start `omnimacro` by calling `bash omnimacro.sh`.
+You can both record and replay keyboard macros with `omnimacro`.
 
+### Record Macros
 To record keyboard events, call:
 ```bash
 bash omnimacro.sh [<path/to/recording/file>]
 ```
-To use a default path, call:
-```bash
-bash omnimacro.sh
-```
+`omnimacro` writes the keyboard events into the specified file. If you don't specify a file,
+`omnimacro` uses the file `$HOME/.omnimacro`.
 
 After invocation, the command records all keyboard presses and releases, except for the `<cmd>` key.
+
 Press `<cmd>` + `<p>` to stop recording.
 
+### Replay Macros
 To replay keyboard events from a file, call:
 ```bash
-bash omnimacro.sh --play|-p [<path/to/recording/file>]
-```
-To replay keyboard events from the default file, call:
-```bash
-bash omnimacro.sh -p
+bash omnimacro.sh --play [<path/to/recording/file>]
 ```
 
 ### Using a Global Keyboard Shortcut
-`omnimacro` becomes handy when you assign it to a global keyboard shortcut that you can trigger from
+`omnimacro` becomes handy when you assign it to global keyboard shortcuts that you can trigger from
 anywhere in your graphical user interface.
 
 On `Ubuntu 18.04` and higher, you can go to:
@@ -53,7 +50,7 @@ On `Ubuntu 18.04` and higher, you can go to:
 There you can set a command's name, the path to the `omnimacro.sh` executable and a key
 combination.
 
-Create 2 shortcuts: 1 shortcut for recording a macro and 1 shortcut for executing a macro.
+Best create 2 shortcuts: 1 shortcut for recording a macro and 1 shortcut for executing a macro.
 
 
 ## Contributing
