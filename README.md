@@ -1,5 +1,5 @@
 # Omnimacro
-A simple tool to record and replay keyboard macros.
+A simple tool to record and replay keyboard macros almost everywhere.
 
 ![](res/screen-example.gif)
 
