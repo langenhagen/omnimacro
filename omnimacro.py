@@ -3,8 +3,7 @@
 """Globally log the keys of keyboard input until a certain kombination and write
 the sequence of keystrokes to a file.
 
-author: andreasl
-"""
+author: andreasl"""
 import argparse
 
 import enum
@@ -35,7 +34,7 @@ def parse_cmd_args() -> argparse.Namespace:
         "--play",
         action="store_true",
         default=False,
-        help="Instead of writing a key sequence to a file, load the file and emulate"
+        help="Instead of writing a key sequence to a file, load the file and emulate "
         "the containing key sequence",
     )
 
@@ -49,6 +48,9 @@ class KeyEventType(enum.Enum):
     RELEASE = enum.auto()
 
 
+p_key = KeyCode.from_char("p")
+
+
 class State:
     """Represents the state of a macro recording session."""
 
@@ -58,14 +60,10 @@ class State:
     @staticmethod
     def update(key: Key, event_type: KeyEventType) -> bool:
         """Update the state and return whether the recording session should continue."""
-        if key == Key.cmd and event_type == KeyEventType.PRESS:
-            State.is_cmd_pressed = True
-        elif key == Key.cmd and event_type == KeyEventType.RELEASE:
-            State.is_cmd_pressed = False
-        elif key == KeyCode.from_char("p") and event_type == KeyEventType.PRESS:
-            State.is_p_pressed = True
-        elif key == KeyCode.from_char("p") and event_type == KeyEventType.RELEASE:
-            State.is_p_pressed = False
+        if key == Key.cmd:
+            State.is_cmd_pressed = event_type == KeyEventType.PRESS
+        elif key == p_key:
+            State.is_p_pressed = event_type == KeyEventType.PRESS
 
         return State.is_cmd_pressed and State.is_p_pressed
 
@@ -112,7 +110,6 @@ def play_key_events(path: pathlib.Path):
 
 def main():
     """omnimacro's main entry point."""
-
     namespace = parse_cmd_args()
     if namespace.play:
         play_key_events(namespace.path)
