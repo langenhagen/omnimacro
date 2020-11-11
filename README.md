@@ -1,6 +1,8 @@
 # Omnimacro
 A simple tool to record and replay keyboard macros.
 
+![](res/screen-example.gif)
+
 
 ## Prerequisites
 `omnimacro` requires Python, at least version `3.6`, to be available on the system.  
