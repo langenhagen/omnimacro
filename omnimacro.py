@@ -54,6 +54,7 @@ class State:
     """Represents the state of a macro recording session."""
 
     is_cmd_pressed: bool = False
+    is_alt_pressed: bool = False
     is_p_pressed: bool = False
 
     @staticmethod
@@ -61,10 +62,12 @@ class State:
         """Update the state and return whether the recording session should continue."""
         if key == Key.cmd:
             State.is_cmd_pressed = event_type == KeyEventType.PRESS
+        elif key == Key.alt:
+            State.is_alt_pressed = event_type == KeyEventType.PRESS
         elif key == p_key:
             State.is_p_pressed = event_type == KeyEventType.PRESS
 
-        return State.is_cmd_pressed and State.is_p_pressed
+        return State.is_cmd_pressed and State.is_p_pressed and State.is_alt_pressed
 
 
 recorded_events: List[Tuple[int, KeyEventType]] = []
