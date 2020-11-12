@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """Globally log the keys of keyboard input until a certain kombination and write
 the sequence of keystrokes to a file.
 
