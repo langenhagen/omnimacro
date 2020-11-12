@@ -109,6 +109,8 @@ def play_events(path: pathlib.Path):
         else:
             controller.release(key)
         time.sleep(0.01)
+    for key in {event[0] for event in key_events}:
+        controller.release(key)
 
 
 def main():
